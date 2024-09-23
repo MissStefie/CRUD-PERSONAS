@@ -34,8 +34,18 @@ import {
 } from "../utils/departments_cities";
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required("El nombre es requerido"),
-  lastname: Yup.string().required("El apellido es requerido"),
+  name: Yup.string()
+    .required("El nombre es requerido")
+    .matches(
+      /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
+      "El nombre solo puede contener letras."
+    ),
+  lastname: Yup.string()
+    .required("El apellido es requerido")
+    .matches(
+      /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
+      "El apellido solo puede contener letras."
+    ),
   email: Yup.string()
     .email("El formato del correo es inválido")
     .required("El correo es requerido"),
