@@ -170,7 +170,7 @@ export default function CollapsibleTable() {
 
   React.useEffect(() => {
     axios
-      .get("http://172.31.64.1:4000/people")
+      .get("http://localhost:4000/people")
       .then((response) => {
         setRows(response.data);
       })
@@ -214,7 +214,7 @@ export default function CollapsibleTable() {
     try {
       if (editPersonId) {
         await axios.put(
-          `http://172.31.64.1:4000/update_person/${editPersonId}`,
+          `http://localhost:4000/update_person/${editPersonId}`,
           newPerson,
           {
             headers: {
@@ -229,7 +229,7 @@ export default function CollapsibleTable() {
         );
       } else {
         const response = await axios.post(
-          "http://172.31.64.1:4000/create_person",
+          "http://localhost:4000/create_person",
           newPerson,
           {
             headers: {
@@ -318,7 +318,7 @@ export default function CollapsibleTable() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://172.31.64.1:4000/delete_person/${id}`);
+      await axios.delete(`http://localhost:4000/delete_person/${id}`);
       setRows((prevRows) => prevRows.filter((row) => row.id !== id));
       console.log(`Persona con ID ${id} eliminada`);
     } catch (error) {
